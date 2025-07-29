@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: 3.13
 
-      - run: pip3 install wpiformat==2025.33
+      - run: pip3 install wpiformat==2025.34
       - run: wpiformat
 
       - name: Verify wpiformat made no changes

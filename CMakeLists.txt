@@ -41,12 +41,12 @@ set(WITH_SIMULATION_MODULES OFF CACHE INTERNAL "With Simulation Modules")
 set(WITH_TESTS OFF CACHE INTERNAL "With Tests")
 set(WITH_WPILIB OFF CACHE INTERNAL "With WPILib")
 set(WITH_WPIMATH OFF CACHE INTERNAL "With WPIMath")
-fetchcontent_declare(
+FetchContent_Declare(
     wpilib
     GIT_REPOSITORY https://github.com/wpilibsuite/allwpilib.git
     GIT_TAG v2025.3.2
     EXCLUDE_FROM_ALL
     SYSTEM
 )
-fetchcontent_makeavailable(wpilib)
+FetchContent_MakeAvailable(wpilib)
 target_link_libraries(nt4-client PUBLIC ntcore)
