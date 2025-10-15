@@ -1,15 +1,10 @@
 cmake_minimum_required(VERSION 3.28)
 
-if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
-    message(FATAL_ERROR "In-source builds are not allowed.")
-endif()
-
 project(nt4-client)
 
-# Generate compile_commands.json by default
-if(NOT CMAKE_EXPORT_COMPILE_COMMANDS)
-    set(CMAKE_EXPORT_COMPILE_COMMANDS "YES" CACHE STRING "" FORCE)
-endif()
+include(FetchContent)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Place libraries in lib and binaries in bin
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -19,17 +14,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(GLOB_RECURSE cpp_src src/*.cpp)
 add_executable(nt4-client ${cpp_src})
 
-target_compile_features(nt4-client PUBLIC cxx_std_20)
 if(NOT MSVC)
-    target_compile_options(nt4-client PRIVATE -Wall -pedantic -Wextra -Werror)
+    target_compile_options(nt4-client PRIVATE -Wall -Wextra -pedantic)
 else()
     # Suppress the following warnings:
     #   * C4244: lossy conversion
-    target_compile_options(nt4-client PRIVATE /wd4244 /WX)
+    target_compile_options(nt4-client PRIVATE /wd4244)
 endif()
-target_include_directories(nt4-client PUBLIC src)
+set_property(TARGET nt4-client PROPERTY COMPILE_WARNING_AS_ERROR ON)
 
-include(FetchContent)
+target_compile_features(nt4-client PUBLIC cxx_std_20)
+target_include_directories(nt4-client PUBLIC src)
 
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 set(WITH_CSCORE OFF CACHE INTERNAL "With CSCore")
