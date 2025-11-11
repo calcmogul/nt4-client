@@ -5,7 +5,3 @@ cppHeaderFileInclude {
 cppSrcFileInclude {
   \.cpp$
 }
-
-includeOtherLibs {
-  networktables/
-}
