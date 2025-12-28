@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: 3.14
 
-      - run: pip3 install wpiformat==2025.75
+      - run: pip3 install wpiformat==2025.79
       - run: wpiformat
 
       - name: Verify wpiformat made no changes
@@ -48,6 +48,6 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: cmake -B build -S . ${{ matrix.cmake-args }}
       - run: cmake --build build
