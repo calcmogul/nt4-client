@@ -23,23 +23,23 @@ else()
 endif()
 set_property(TARGET nt4-client PROPERTY COMPILE_WARNING_AS_ERROR ON)
 
-target_compile_features(nt4-client PUBLIC cxx_std_20)
+target_compile_features(nt4-client PUBLIC cxx_std_23)
 target_include_directories(nt4-client PUBLIC src)
 
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-set(WITH_CSCORE OFF CACHE INTERNAL "With CSCore")
-set(WITH_GUI OFF CACHE INTERNAL "With GUI")
-set(WITH_JAVA OFF CACHE INTERNAL "With Java")
-set(WITH_NTCORE ON CACHE INTERNAL "With NTCore")
-set(WITH_PROTOBUF OFF CACHE BOOL "" FORCE)
-set(WITH_SIMULATION_MODULES OFF CACHE INTERNAL "With Simulation Modules")
-set(WITH_TESTS OFF CACHE INTERNAL "With Tests")
-set(WITH_WPILIB OFF CACHE INTERNAL "With WPILib")
-set(WITH_WPIMATH OFF CACHE INTERNAL "With WPIMath")
+set(BUILD_SHARED_LIBS OFF)
+set(WPILIB_NO_WERROR ON)
+set(WPILIB_WITH_CSCORE OFF)
+set(WPILIB_WITH_GUI OFF)
+set(WPILIB_WITH_JAVA OFF)
+set(WPILIB_WITH_NTCORE ON)
+set(WPILIB_WITH_SIMULATION_MODULES OFF)
+set(WPILIB_WITH_TESTS OFF)
+set(WPILIB_WITH_WPILIB OFF)
+set(WPILIB_WITH_WPIMATH OFF)
 FetchContent_Declare(
     wpilib
     GIT_REPOSITORY https://github.com/wpilibsuite/allwpilib.git
-    GIT_TAG v2025.3.2
+    GIT_TAG v2027.0.0-alpha-7
     EXCLUDE_FROM_ALL
     SYSTEM
 )

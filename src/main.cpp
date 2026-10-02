@@ -3,20 +3,20 @@
 #include <chrono>
 #include <thread>
 
-#include <networktables/DoubleTopic.h>
-#include <networktables/NetworkTable.h>
-#include <networktables/NetworkTableInstance.h>
+#include <wpi/nt/DoubleTopic.hpp>
+#include <wpi/nt/NetworkTable.hpp>
+#include <wpi/nt/NetworkTableInstance.hpp>
 
 int main() {
   using namespace std::chrono_literals;
 
-  auto inst = nt::NetworkTableInstance::GetDefault();
+  auto inst = wpi::nt::NetworkTableInstance::GetDefault();
   auto table = inst.GetTable("datatable");
   auto x_sub = table->GetDoubleTopic("x").Subscribe(0.0);
   auto y_sub = table->GetDoubleTopic("y").Subscribe(0.0);
 
-  inst.StartClient4("Example client");
-  inst.SetServerTeam(1234);
+  inst.StartClient("Example client");
+  inst.SetServerTeam("1234");
 
   // Recommended if running on DS computer; this gets the robot IP from the DS
   inst.StartDSClient();
